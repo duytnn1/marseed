@@ -9,6 +9,7 @@ import {
   PlayIcon
 } from '@heroicons/react/24/outline'
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts'
+import AICopilotPanel from '@/components/AICopilotPanel'
 
 const DashboardPage = () => {
   const stats = [
@@ -118,6 +119,9 @@ const DashboardPage = () => {
           </button>
         </div>
       </div>
+
+      {/* AI Campaign Copilot */}
+      <AICopilotPanel />
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

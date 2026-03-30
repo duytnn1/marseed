@@ -10,7 +10,18 @@ const RegisterPage = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   
-  const [formData, setFormData] = useState({
+  type RegisterFormData = {
+    fullName: string
+    email: string
+    password: string
+    confirmPassword: string
+    businessName: string
+    businessType: string
+    platforms: string[]
+    selectedPlan: string
+  }
+
+  const [formData, setFormData] = useState<RegisterFormData>({
     // Step 1: Personal Info
     fullName: '',
     email: '',
