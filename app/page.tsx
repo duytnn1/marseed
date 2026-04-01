@@ -7,6 +7,7 @@ import PricingSection from '@/components/PricingSection'
 import TestimonialsSection from '@/components/TestimonialsSection'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
+import MetaIdeaGenerator from '@/components/MetaIdeaGenerator'
 
 export default function Home() {
   return (
@@ -18,6 +19,11 @@ export default function Home() {
       <PlatformsSection />
       <TestimonialsSection />
       <PricingSection />
+      <section className="bg-slate-50 border-t border-slate-200 py-12">
+        <div className="max-w-5xl mx-auto px-4">
+          <MetaIdeaGenerator />
+        </div>
+      </section>
       <CTASection />
       <Footer />
     </main>
