@@ -18,7 +18,9 @@ import {
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState('profile')
   const [showPassword, setShowPassword] = useState(false)
-  const [notifications, setNotifications] = useState({
+  type NotificationType = 'email' | 'push' | 'sms' | 'marketing'
+
+  const [notifications, setNotifications] = useState<Record<NotificationType, boolean>>({
     email: true,
     push: false,
     sms: true,
@@ -49,7 +51,7 @@ const SettingsPage = () => {
     { id: 3, date: '2023-11-15', plan: 'Gói Cơ bản', amount: 199000, status: 'Đã thanh toán' }
   ]
 
-  const handleNotificationChange = (type: string) => {
+  const handleNotificationChange = (type: NotificationType) => {
     setNotifications(prev => ({
       ...prev,
       [type]: !prev[type]

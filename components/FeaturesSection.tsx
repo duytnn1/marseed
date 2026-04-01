@@ -14,6 +14,11 @@ import {
 const FeaturesSection = () => {
   const [activeTab, setActiveTab] = useState(0)
 
+  type CommentDemoItem = { platform: string; comment: string }
+  type ScheduleDemoItem = { time: string; activity: string }
+  type AnalyticsDemoItem = { metric: string; value: string; trend: 'up' | 'down' }
+  type TemplateDemoItem = { category: string; template: string }
+
   const tabs = [
     { name: 'Tạo Comment AI', icon: SparklesIcon },
     { name: 'Lên lịch thông minh', icon: ClockIcon },
@@ -21,7 +26,16 @@ const FeaturesSection = () => {
     { name: 'Templates ngành', icon: PaintBrushIcon },
   ]
 
-  const tabContent = [
+  const tabContent: {
+    title: string
+    description: string
+    features: string[]
+    demo:
+      | CommentDemoItem[]
+      | ScheduleDemoItem[]
+      | AnalyticsDemoItem[]
+      | TemplateDemoItem[]
+  }[] = [
     {
       title: 'AI tạo comment tự nhiên như người Việt thật',
       description: 'Công nghệ AI tiên tiến hiểu sâu ngôn ngữ và văn hóa Việt Nam, tạo ra những comment seeding tự nhiên, đa dạng và phù hợp với từng ngữ cảnh.',
@@ -179,53 +193,57 @@ const FeaturesSection = () => {
               </h4>
               
               <div className="space-y-4">
-                {tabContent[activeTab].demo.map((item, index) => (
-                  <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
-                    {activeTab === 0 && (
-                      <>
-                        <div className="text-xs text-primary-600 font-medium mb-2">
-                          {item.platform}
-                        </div>
-                        <div className="text-sm text-gray-700 text-vietnamese">
-                          "{item.comment}"
-                        </div>
-                      </>
-                    )}
-                    
-                    {activeTab === 1 && (
-                      <>
-                        <div className="text-sm font-medium text-gray-900">
-                          {item.time}
-                        </div>
-                        <div className="text-sm text-gray-600 text-vietnamese">
-                          {item.activity}
-                        </div>
-                      </>
-                    )}
-                    
-                    {activeTab === 2 && (
+                {activeTab === 0 &&
+                  (tabContent[0].demo as CommentDemoItem[]).map((item, index) => (
+                    <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
+                      <div className="text-xs text-primary-600 font-medium mb-2">
+                        {item.platform}
+                      </div>
+                      <div className="text-sm text-gray-700 text-vietnamese">
+                        "{item.comment}"
+                      </div>
+                    </div>
+                  ))}
+
+                {activeTab === 1 &&
+                  (tabContent[1].demo as ScheduleDemoItem[]).map((item, index) => (
+                    <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
+                      <div className="text-sm font-medium text-gray-900">
+                        {item.time}
+                      </div>
+                      <div className="text-sm text-gray-600 text-vietnamese">
+                        {item.activity}
+                      </div>
+                    </div>
+                  ))}
+
+                {activeTab === 2 &&
+                  (tabContent[2].demo as AnalyticsDemoItem[]).map((item, index) => (
+                    <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-gray-600">{item.metric}</span>
-                        <span className={`text-sm font-semibold ${
-                          item.trend === 'up' ? 'text-green-600' : 'text-red-600'
-                        }`}>
+                        <span
+                          className={`text-sm font-semibold ${
+                            item.trend === 'up' ? 'text-green-600' : 'text-red-600'
+                          }`}
+                        >
                           {item.value}
                         </span>
                       </div>
-                    )}
-                    
-                    {activeTab === 3 && (
-                      <>
-                        <div className="text-xs text-secondary-600 font-medium mb-2">
-                          {item.category}
-                        </div>
-                        <div className="text-sm text-gray-700 text-vietnamese">
-                          "{item.template}"
-                        </div>
-                      </>
-                    )}
-                  </div>
-                ))}
+                    </div>
+                  ))}
+
+                {activeTab === 3 &&
+                  (tabContent[3].demo as TemplateDemoItem[]).map((item, index) => (
+                    <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
+                      <div className="text-xs text-secondary-600 font-medium mb-2">
+                        {item.category}
+                      </div>
+                      <div className="text-sm text-gray-700 text-vietnamese">
+                        "{item.template}"
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
